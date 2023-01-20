@@ -1,4 +1,5 @@
 const { productsModel } = require('../models');
+const validateName = require('./validations/productsValidation');
 
 const findAll = async () => {
   const result = await productsModel.findAll();
@@ -14,7 +15,12 @@ const findById = async (productId) => {
 };
 
 const insert = async (name) => {
-  const idInserted = await productsModel.insert(name);
+  const { error } = validateName.validate(name);
+  if (error) {
+    return { type: 'INVALID_VALUE', message: '"name" length must be at least 5 characters long' };
+  }
+
+   const idInserted = await productsModel.insert(name);
   const productInserted = await productsModel.findById(idInserted);
   return { type: null, message: productInserted };
 };

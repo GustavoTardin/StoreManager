@@ -17,7 +17,12 @@ const findById = async (req, res) => {
 
 const insert = async (req, res) => {
   const { name } = req.body;
+  if (!name) return res.status(400).json({ message: '"name" is required' });
+
   const { type, message } = await productsService.insert(name);
+
+  if (type) return res.status(errorTypes.mapError(type)).json({ message });
+  
   res.status(201).json(message);
 };
 
