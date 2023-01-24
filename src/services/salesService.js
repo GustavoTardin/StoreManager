@@ -2,13 +2,13 @@ const { salesModel } = require('../models');
 
 const getAll = async () => {
   const result = await salesModel.getAll();
+  console.log(result);
   return { type: null, message: result };
 };
 
 const findById = async (id) => {
   const result = await salesModel.findById(id);
-  console.log(result);
-  if (!result) return { type: 'PRODUCT_NOT_FOUND', message: 'Sale not found' };
+  if (result.length < 1) return { type: 'PRODUCT_NOT_FOUND', message: 'Sale not found' };
   return { type: null, message: result };
 };
 
@@ -17,7 +17,7 @@ const insertSales = async (arrayBody) => {
   if (verifyQuantities.length > 0) {
     return {
       type: 'INVALID_VALUE', message: '"quantity" must be greater than or equal to 1' };
-  }
+  } 
   const promise = await arrayBody.map((b) => salesModel.findById(b.productId));
   const products = await Promise.all(promise);
  
