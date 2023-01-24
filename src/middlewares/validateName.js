@@ -1,4 +1,4 @@
-const shema = require('../services/validations/productsValidation');
+const shema = require('../services/validations/schema');
 
 const validateName = (req, res, next) => {
   const { name } = req.body;

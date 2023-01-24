@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const { productsController } = require('../controllers');
-const validateName = require('../middlewares/validateName');
+const { validateName } = require('../middlewares');
 
 router.get('/', productsController.findAll);
 
