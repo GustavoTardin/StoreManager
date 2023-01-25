@@ -32,7 +32,7 @@ const insert = async (arrayBody) => {
       'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
       [insertId, b.productId, b.quantity],
   ));
-  const a = await Promise.all(promise);
+ await Promise.all(promise);
   // console.log(a);
  // console.log(insertId);
 
