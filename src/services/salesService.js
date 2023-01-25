@@ -1,4 +1,4 @@
-const { salesModel } = require('../models');
+const { salesModel, productsModel } = require('../models');
 
 const getAll = async () => {
   const result = await salesModel.getAll();
@@ -18,7 +18,7 @@ const insertSales = async (arrayBody) => {
     return {
       type: 'INVALID_VALUE', message: '"quantity" must be greater than or equal to 1' };
   } 
-  const promise = await arrayBody.map((b) => salesModel.findById(b.productId));
+  const promise = await arrayBody.map((b) => productsModel.findById(b.productId));
   const products = await Promise.all(promise);
  
   if (products.some((e) => !e)) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
