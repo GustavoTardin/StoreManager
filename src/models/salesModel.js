@@ -19,7 +19,7 @@ ON sp.sale_id = s.id
 WHERE s.id = ?;`,
     [id],
   );
-  // const array = result[1][0];
+ 
   return camelize(result);
 };
 
@@ -33,8 +33,6 @@ const insert = async (arrayBody) => {
       [insertId, b.productId, b.quantity],
   ));
  await Promise.all(promise);
-  // console.log(a);
- // console.log(insertId);
 
   return insertId;
 };

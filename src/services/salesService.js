@@ -2,7 +2,6 @@ const { salesModel, productsModel } = require('../models');
 
 const getAll = async () => {
   const result = await salesModel.getAll();
-  console.log(result);
   return { type: null, message: result };
 };
 

@@ -3,7 +3,6 @@ const errorTypes = require('../utils/errorTypes');
 
 const getAll = async (_req, res) => {
   const { message } = await salesService.getAll();
-  console.log(Date.now());
   return res.status(200).json(message);
 };
 
