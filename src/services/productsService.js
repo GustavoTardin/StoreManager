@@ -2,7 +2,6 @@ const { productsModel } = require('../models');
 
 const findAll = async () => {
   const result = await productsModel.findAll();
-  console.log(result);
   return { type: null, message: result };
 };
 
