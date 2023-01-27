@@ -45,9 +45,19 @@ const deleteById = async (id) => {
   return affectedRows;
 };
 
+const updateById = async (arrayBody, id) => {
+  const promise = await arrayBody.map((e) => connection.execute(
+    'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?',
+    [e.quantity, e.productId, id],
+  ));
+  const affectedRows = await Promise.all(promise);
+  return affectedRows;
+};
+
 module.exports = {
   getAll,
   findById,
   insert,
   deleteById,
+  updateById,
 };
